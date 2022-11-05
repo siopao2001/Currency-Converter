@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Currency Converter</title>
+</head>
+<body>
+<form id="form"" >
+
+<label class="col-form-label">amount:</label>
+<input type="text" id="amount-value" class="param-input form-control" name="amount"  placeholder="5" style="font-size: 14px;" />
+
+
+<label class="col-form-label">from:</label>
+<input type="text" id="from-value" class="param-input form-control" name="from"  placeholder="USD" style="font-size: 14px;" />
+
+
+<label class="col-form-label">to:</label>
+ <input id="to-value" type="text" class="param-input form-control" name="to"  placeholder="GBP" style="font-size: 14px;" />
+
+<input id="submit" type="submit" value="convert">
+ 
+</form>
+<p id="converted"></p>
+ <script>
+  const form = document.getElementById('form');
+
+  const requestOptions = {
+   method: 'GET',
+   redirect: 'follow',
+   headers: {
+   'apikey': `T4qKjfwUso1InAqMiX9pBI3H7x9clfxT`
+   }
+  };
+
+  function logSubmit(event) {
+   let to  = document.getElementById("to-value").value;
+   let from = document.getElementById("from-value").value;
+   let amount = document.getElementById("amount-value").value;
+ 
+   fetch(`https://api.apilayer.com/currency_data/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
+   .then(response => response.json())
+   .then(object => document.getElementById("converted").innerText = object.result)
+   .catch(error => console.log('error', error));
+
+   event.preventDefault();
+ }
+ doc
+ form.addEventListener('submit', logSubmit);
+ document.addEventListener('DOMContentLoaded', () => {
+   
+ 
+ })
+ </script>
+</body>
+</html>
