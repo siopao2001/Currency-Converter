@@ -12,7 +12,7 @@ let variables = {
    amount: document.getElementById("amount-value").value
 };
 
-const {to, from, amount} = variables;
+let {to, from, amount} = variables;
 
 const requestOptions = {
   method: 'GET',

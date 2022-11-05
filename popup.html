@@ -14,11 +14,10 @@
 
 
 <label class="col-form-label">from:</label>
-<input type="text" id="from-value" class="param-input form-control" name="from"  placeholder="USD" style="font-size: 14px;" />
-
+<select id="from-value" name="from-value"></select>
 
 <label class="col-form-label">to:</label>
- <input id="to-value" type="text" class="param-input form-control" name="to"  placeholder="GBP" style="font-size: 14px;" />
+ <select id="to-value" name="to"></select>
 
 <input id="submit" type="submit" value="convert">
  
@@ -47,11 +46,24 @@
 
    event.preventDefault();
  }
- doc
+ 
  form.addEventListener('submit', logSubmit);
  document.addEventListener('DOMContentLoaded', () => {
-   
- 
+   const selectDropFrom = document.querySelector('#from-value');
+   const selectDropTo = document.querySelector('#to-value');
+
+  fetch("https://api.apilayer.com/currency_data/list", requestOptions)
+  .then(response => response.json())
+  .then(result => {
+     let output = "";
+     for (const currency in result.currencies) {
+       output += `<option value="${currency}">${currency}</option>`;
+       selectDropFrom.innerHTML = output;
+       selectDropTo.innerHTML = output;
+    }
+   })
+  .catch(error => console.log('error', error));
+
  })
  </script>
 </body>
