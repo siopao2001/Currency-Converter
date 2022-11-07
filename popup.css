@@ -1,0 +1,11 @@
+body {
+  background-color: lightblue;
+  width:450px;
+  height:50px;
+}
+
+#converted {
+   text-align: center;
+   color: black;
+   font-weight: bold;
+}

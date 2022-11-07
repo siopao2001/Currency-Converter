@@ -20,7 +20,7 @@ function logSubmit(event) {
     .then((response) => response.json())
     .then(
       (object) =>
-        (document.getElementById("converted").innerText = object.result)
+        (document.getElementById("converted").innerText = `converted amount ${object.result}`)
     )
     .catch((error) => console.log("error", error));
 
