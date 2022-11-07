@@ -12,6 +12,7 @@ function logSubmit(event) {
   let to = document.getElementById("to-value").value;
   let from = document.getElementById("from-value").value;
   let amount = document.getElementById("amount-value").value;
+  let currentDate = new Date().toJSON().slice(0, 10);
 
   fetch(
     `https://api.apilayer.com/currency_data/convert?to=${to}&from=${from}&amount=${amount}`,
@@ -20,11 +21,11 @@ function logSubmit(event) {
     .then((response) => response.json())
     .then(
       (object) =>
-        (document.getElementById("converted").innerText = `converted amount ${object.result}`)
+        (document.getElementById(
+          "converted"
+        ).innerText = `converted amount: ${object.result}`)
     )
     .catch((error) => console.log("error", error));
-
-  event.preventDefault();
 }
 
 function listCurrencies() {
