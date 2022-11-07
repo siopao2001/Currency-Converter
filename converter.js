@@ -1,5 +1,5 @@
- 
-const form = document.getElementById('form');
+ const form = document.getElementById('form');
+
 
   const requestOptions = {
    method: 'GET',
@@ -20,11 +20,10 @@ const form = document.getElementById('form');
    .catch(error => console.log('error', error));
 
    event.preventDefault();
- }
- 
- form.addEventListener('submit', logSubmit);
- document.addEventListener('DOMContentLoaded', () => {
-   const selectDropFrom = document.querySelector('#from-value');
+ };
+
+ function listCurrencies() {
+  const selectDropFrom = document.querySelector('#from-value');
    const selectDropTo = document.querySelector('#to-value');
 
   fetch("https://api.apilayer.com/currency_data/list", requestOptions)
@@ -38,6 +37,8 @@ const form = document.getElementById('form');
     }
    })
   .catch(error => console.log('error', error));
-
- })
+};
+ 
+ form.addEventListener('submit', logSubmit);
+ document.addEventListener('DOMContentLoaded', listCurrencies);
 
