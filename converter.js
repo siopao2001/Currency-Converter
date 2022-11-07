@@ -4,7 +4,7 @@ const requestOptions = {
   method: "GET",
   redirect: "follow",
   headers: {
-    apikey: "T4qKjfwUso1InAqMiX9pBI3H7x9clfxT",
+    apikey: "g3Xb2EWGKZCo8IxsfTRfAqJzqi9iW7D0",
   },
 };
 
@@ -12,7 +12,7 @@ function logSubmit(event) {
   let to = document.getElementById("to-value").value;
   let from = document.getElementById("from-value").value;
   let amount = document.getElementById("amount-value").value;
-  let currentDate = new Date().toJSON().slice(0, 10);
+  
 
   fetch(
     `https://api.apilayer.com/currency_data/convert?to=${to}&from=${from}&amount=${amount}`,
@@ -26,6 +26,9 @@ function logSubmit(event) {
         ).innerText = `converted amount: ${object.result}`)
     )
     .catch((error) => console.log("error", error));
+    
+  event.preventDefault()
+  
 }
 
 function listCurrencies() {
